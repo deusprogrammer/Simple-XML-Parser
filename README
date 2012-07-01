@@ -1,1 +1,32 @@
+//SAMPLE USAGE
+#include <stdio.h>
+#include "simXML.h"
 
+int main(int argc, char* argv[])
+{
+	XML_Document* xml = new XML_Document("test.xml");
+	Tag* t;
+	char* p;
+
+	//Fetch first instance of xml->tag1->child_tag
+	t = xml->getElementByName("xml")->getElementByName("tag1")->getElementByName("child_tag");
+
+	//If branch doesn't exist, NULL is returned.
+	if(t!=NULL)
+	{
+		//Fetch xml->tag1->child_tag[0]:parameter1
+		p = t->getParameterByName("parameter1");
+	}
+
+	//Fetch tenth instance of xml->tag1->child_tag
+	t = xml->getElementByName("xml")->getElementByName("tag1")->getElementByName("child_tag", 10);
+
+	//If branch doesn't exist, NULL is returned.
+	if(t!=NULL)
+	{
+		//Fetch xml->tag1->child_tag[10]:parameter1
+		p = t->getParameterByName("parameter1");
+	}
+
+	return 0;
+}
